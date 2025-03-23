@@ -21,7 +21,7 @@ pipeline
         {
             steps
             {
-                sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@65.2.37.164:/var/lib/tomcat8/webapps/testwebapp.war'
+                sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@65.2.37.164:/var/lib/tomcat10/webapps/testwebapp.war'
             }
         }
         stage('ContinuousTesting')
@@ -39,11 +39,11 @@ pipeline
         success
         {
             input message: 'Waiting for Approval!', submitter: 'naresh'
-               sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@13.203.97.202:/var/lib/tomcat8/webapps/prodwebapp.war' 
+               sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@13.203.97.202:/var/lib/tomcat10/webapps/prodwebapp.war' 
         }
         failure
         {
-            mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Jenkins CI-CD Failed', to: 'gandham.saikrishna@gmail.com'
+            mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Jenkins CI-CD Failed', to: 'abhaygajera11@gmail.com'
         }
        
             
