@@ -11,11 +11,11 @@ pipeline
 				{
 				   try
 				   {
-                            git 'https://github.com/intelliqittrainings/maven.git'
+                            git 'https://github.com/Abhay93280/maven.git'
 				   }
 				   catch(Exception e1)
 				   {
-				       mail bcc: '', body: 'Jenkins is unable to download from github', cc: '', from: '', replyTo: '', subject: 'Download issue', to: 'git_admin@gmail.com'
+				       mail bcc: '', body: 'Jenkins is unable to download from github', cc: '', from: '', replyTo: '', subject: 'Download issue', to: 'abhaygajera11@gmail.com'
 				      exit(1);
 				   }
 				 }
@@ -33,7 +33,7 @@ pipeline
 				    }
 					catch(Exception e2)
 					{
-					    mail bcc: '', body: 'Jenkins is unable to create an artifact', cc: '', from: '', replyTo: '', subject: 'Build issue', to: 'developers@gmail.com'
+					    mail bcc: '', body: 'Jenkins is unable to create an artifact', cc: '', from: '', replyTo: '', subject: 'Build issue', to: 'abhaygajera11@gmail.com'
 						exit(1);
 					}
 				}
@@ -47,11 +47,11 @@ pipeline
 				{
 				    try
 					{
-                       sh label: '', script: 'scp /var/lib/jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@172.31.36.247:/var/lib/tomcat8/webapps/newtest1.war'
+                       sh label: '', script: 'scp /var/lib/jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@65.2.37.164:/var/lib/tomcat10/webapps/newtest1.war'
                     }
 					catch(Exception e3)
 					{
-					    mail bcc: '', body: 'Jenkins is unable to deploy into the QAServers', cc: '', from: '', replyTo: '', subject: 'Deployment issue', to: 'middleware@gmail.com'
+					    mail bcc: '', body: 'Jenkins is unable to deploy into the QAServers', cc: '', from: '', replyTo: '', subject: 'Deployment issue', to: 'abhaygajera11@gmail.com'
 					    exit(1);
 					}
 				}
@@ -65,12 +65,12 @@ pipeline
 				{
 				    try
 					{
-                         git 'https://github.com/selenium-saikrishna/FunctionalTesting.git'
+                         git 'https://github.com/Abhay93280/maven.git'
                          sh label: '', script: 'echo "Testing Passed"'  
                     }
 					catch(Exception e4)
 					{
-					    mail bcc: '', body: 'Functional Testing has failed', cc: '', from: '', replyTo: '', subject: 'Testingt issue', to: 'testers@gmail.com'
+					    mail bcc: '', body: 'Functional Testing has failed', cc: '', from: '', replyTo: '', subject: 'Testingt issue', to: 'abhaygajera11@gmail.com'
 			            exit(1);
 					}
 			    }
@@ -86,11 +86,11 @@ pipeline
 			{
 			     try
 				 {
-				    sh label: '', script: 'scp /var/lib/jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@172.31.35.219:/var/lib/tomcat8/webapps/prod.war' 
+				    sh label: '', script: 'scp /var/lib/jenkins/workspace/DeclarativePipeline/webapp/target/webapp.war ubuntu@13.203.97.202:/var/lib/tomcat10/webapps/prod.war' 
 		         }
 				 catch(Exception e5)
 				 {
-				    mail bcc: '', body: 'Jenkins is unable to deploy into prod servers', cc: '', from: '', replyTo: '', subject: 'Delivery issue', to: 'delivery@gmail.com'
+				    mail bcc: '', body: 'Jenkins is unable to deploy into prod servers', cc: '', from: '', replyTo: '', subject: 'Delivery issue', to: 'abhaygajera11@gmail.com'
 					exit(1);
 				 }
 			}
