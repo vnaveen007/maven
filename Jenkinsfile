@@ -1,21 +1,13 @@
 node('built-in'){
-    stage('continuousDownlaod') {
+    stage('continuousDownlaod_loan') {
      git 'https://github.com/gopiseshu/maven.git'
 }
-stage('continuousBuild') {
+stage('continuousBuild_loan') {
     sh '''mvn package
     '''
 }
-stage('continuousDeployment'){
+stage('continuousDeployment_loan'){
     sh ' scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.11.73:/opt/tomcat/webapps/qqaapp.war'
 }
-stage('continuousTesting'){
-    git 'https://github.com/gopiseshu/FunctionalTesting.git'
-    sh '''java -jar /var/lib/jenkins/workspace/Testing/testing.jar
-    '''
-}
-stage('continuousDelivery'){
-     sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.11.192:/opt/tomcat/webapps/pprodapp.war'
-}
-    
+
 }
