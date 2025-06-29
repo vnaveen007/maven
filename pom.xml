@@ -1,7 +1,8 @@
-<!--changes done to pom.xml file-->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -14,8 +15,23 @@
   <url>http://www.example.com</url>
 
   <properties>
-    <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+    <maven.release.plugin.version>3.0.0-M5</maven.release.plugin.version>
+    <maven.site.plugin.version>4.0.1</maven.site.plugin.version>
+    <maven.checkstyle.plugin.version>3.2.2</maven.checkstyle.plugin.version>
+    <maven.jxr.plugin.version>3.1.1</maven.jxr.plugin.version>
+    <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
+    <maven.pmd.plugin.version>3.20.0</maven.pmd.plugin.version>
+    <maven.surefire.report.plugin.version>3.0.0-M9</maven.surefire.report.plugin.version>
+    <maven.surefire.plugin.version>3.0.0-M9</maven.surefire.plugin.version>
+    <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+    <taglist.plugin.version>2.4</taglist.plugin.version>
+    <jetty.plugin.version>11.0.15</jetty.plugin.version>
   </properties>
 
   <modules>
@@ -32,177 +48,160 @@
   </distributionManagement>
 
   <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>17</source>
-          <target>17</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <reportPlugins>
-            <plugin>
-              <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <artifactId>maven-jxr-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <artifactId>maven-pmd-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>findbugs-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>taglist-maven-plugin</artifactId>
-            </plugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
-    </plugins>
-
     <pluginManagement>
       <plugins>
-        <plugin>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>2.8</version>
-        </plugin>
-
+        <!-- Compiler -->
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
+          <version>${maven.compiler.plugin.version}</version>
+          <configuration>
+            <release>${java.version}</release>
+          </configuration>
         </plugin>
 
-        <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.8</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-jxr-plugin</artifactId>
-          <version>2.3</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>2.6</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.4</version>
-        </plugin>
-
+        <!-- Release -->
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.2.1</version>
+          <version>${maven.release.plugin.version}</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+          </configuration>
         </plugin>
 
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-
+        <!-- Site -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.0</version>
+          <version>${maven.site.plugin.version}</version>
+          <configuration>
+            <reportPlugins>
+              <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <artifactId>maven-jxr-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <artifactId>maven-pmd-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+              </plugin>
+              <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+              </plugin>
+            </reportPlugins>
+          </configuration>
         </plugin>
 
+        <!-- Checkstyle -->
         <plugin>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.11</version>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven.checkstyle.plugin.version}</version>
         </plugin>
 
+        <!-- JXR -->
+        <plugin>
+          <artifactId>maven-jxr-plugin</artifactId>
+          <version>${maven.jxr.plugin.version}</version>
+        </plugin>
+
+        <!-- Javadoc -->
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven.javadoc.plugin.version}</version>
+        </plugin>
+
+        <!-- PMD -->
+        <plugin>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${maven.pmd.plugin.version}</version>
+        </plugin>
+
+        <!-- Surefire & Reporting -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.11</version>
+          <version>${maven.surefire.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <version>${maven.surefire.report.plugin.version}</version>
         </plugin>
 
+        <!-- FindBugs (SpotBugs successor) -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
-          <version>2.3.3</version>
+          <version>${findbugs.plugin.version}</version>
         </plugin>
 
+        <!-- TagList -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>taglist-maven-plugin</artifactId>
-          <version>2.4</version>
+          <version>${taglist.plugin.version}</version>
         </plugin>
 
+        <!-- Jetty -->
         <plugin>
-          <groupId>org.mortbay.jetty</groupId>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
-          <version>8.0.0.M1</version>
+          <version>${jetty.plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <!-- Inherit managed plugins -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.5</version>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
       </dependency>
-
       <dependency>
         <groupId>javax.servlet.jsp</groupId>
-        <artifactId>jsp-api</artifactId>
-        <version>2.2</version>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>2.3.3</version>
+        <scope>provided</scope>
       </dependency>
-
       <dependency>
         <groupId>junit</groupId>
-        <artifactId>junit-dep</artifactId>
-        <version>4.10</version>
+        <artifactId>junit</artifactId>
+        <version>4.13.3</version>
         <scope>test</scope>
       </dependency>
-
       <dependency>
         <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>1.2.1</version>
+        <artifactId>hamcrest</artifactId>
+        <version>2.2</version>
         <scope>test</scope>
       </dependency>
-
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-library</artifactId>
-        <version>1.2.1</version>
-        <scope>test</scope>
-      </dependency>
-
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>1.8.5</version>
+        <version>4.8.0</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -212,11 +211,11 @@
     <connection>scm:git:git@github.com:jleetutorial/maven-project.git</connection>
     <developerConnection>scm:git:git@github.com:jleetutorial/maven-project.git</developerConnection>
     <tag>HEAD</tag>
-    <url>http://github.com/jleetutorial/maven-project</url>
+    <url>https://github.com/jleetutorial/maven-project</url>
   </scm>
 
   <prerequisites>
-    <maven>3.0.3</maven>
+    <maven>3.8.7</maven>
   </prerequisites>
 
 </project>
